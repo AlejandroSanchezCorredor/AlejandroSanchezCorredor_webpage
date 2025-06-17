@@ -5,6 +5,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/AlejandroSanchezCorredor_webpage/',
+  base: '/AlejandroSanchezCorredor_webpage',
   plugins: [react(), tailwindcss()],
 })
