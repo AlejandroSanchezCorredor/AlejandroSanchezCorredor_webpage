@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
-import linkedin_logo from './assets/linkedin.png';
-import github_logo from './assets/github.svg';
+import linkedin_logo from './assets/linkedin_logo.png';
+import github_logo from './assets/github_logo.png';
 import telefono_logo from './assets/telefono.png';
 import email from './assets/email.png';
 import home_icon from './assets/home_logo.png';
@@ -227,13 +227,58 @@ function App() {
         </section>
 
 
-
-
         {/* PROYECTOS */}
-        <section id="proyectos" className="max-w-5xl mx-auto p-6">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-4">Proyectos</h2>
-          <p className="text-gray-300">Aquí puedes incluir tarjetas con tus proyectos destacados, tecnologías utilizadas y enlaces a GitHub o demos.</p>
+        <section id="proyectos" className="max-w-6xl mx-auto px-4 py-12">
+          <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Proyectos</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* Tarjeta de proyecto */}
+            {[
+              {
+                titulo: "Dashboard de Ventas",
+                descripcion: "Visualización interactiva de KPIs de ventas con filtros dinámicos.",
+                tecnologias: ["React", "Tailwind", "Chart.js"],
+                github: "#",
+                demo: "#",
+                imagen: "https://via.placeholder.com/600x400?text=Dashboard"
+              },
+              {
+                titulo: "Clasificador de Imágenes",
+                descripcion: "Red neuronal para clasificar imágenes con más del 90% de precisión.",
+                tecnologias: ["Tensorflow", "Python", "Pandas"],
+                github: "#",
+                demo: "#",
+                imagen: "https://via.placeholder.com/600x400?text=AI+Model"
+              },
+              {
+                titulo: "Scraper de Noticias",
+                descripcion: "Sistema que extrae y analiza titulares de múltiples fuentes.",
+                tecnologias: ["Selenium", "Python", "BeautifulSoup"],
+                github: "#",
+                demo: "#",
+                imagen: "https://via.placeholder.com/600x400?text=Scraper"
+              }
+            ].map((proyecto, index) => (
+              <div key={index} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                <img src={proyecto.imagen} alt={proyecto.titulo} className="w-full h-48 object-cover" />
+                <div className="p-6 space-y-2">
+                  <h3 className="text-xl font-semibold text-white">{proyecto.titulo}</h3>
+                  <p className="text-gray-400 text-sm">{proyecto.descripcion}</p>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {proyecto.tecnologias.map((tech, i) => (
+                      <span key={i} className="bg-blue-600 text-xs text-white px-2 py-0.5 rounded-full">{tech}</span>
+                    ))}
+                  </div>
+                  <div className="flex gap-4 mt-4">
+                    <a href={proyecto.github} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm">GitHub</a>
+                    <a href={proyecto.demo} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm">Demo</a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
+
 
         {/* FORMACIÓN */}
         <section id="formacion" className="max-w-3xl mx-auto bg-gray-800 rounded-xl shadow-lg p-6">
