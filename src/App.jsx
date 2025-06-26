@@ -141,6 +141,26 @@ function App() {
 
   const [imagenAmpliada, setImagenAmpliada] = useState(null);
 
+  const [esMovil, setEsMovil] = useState(false);
+
+  useEffect(() => {
+    const verificarTamano = () => setEsMovil(window.innerWidth <= 768);
+    verificarTamano();
+    window.addEventListener("resize", verificarTamano);
+    return () => window.removeEventListener("resize", verificarTamano);
+  }, []);
+
+  const [giradas, setGiradas] = useState([]);
+
+  const alternarGiro = (index) => {
+    setGiradas((prev) => {
+      const nuevo = [...prev];
+      nuevo[index] = !nuevo[index];
+      return nuevo;
+    });
+  };
+
+
 
 
   return (
@@ -296,51 +316,72 @@ function App() {
         {/* PROYECTOS */}
         <section id="proyectos" className="max-w-6xl mx-auto px-4 py-12">
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Proyectos</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {proyectosPaginados.map((proyecto, index) => (
-            <div key={index} className="relative group [perspective:1000px] h-[430px]">
-              <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
 
-                {/* Frente */}
-                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col">
-                  <img src={proyecto.imagen} alt={proyecto.titulo} className="w-full h-40 object-cover rounded" />
-                  <h3 className="text-lg font-bold text-white mt-4 min-h-[64px]">
-                    {proyecto.titulo}
-                  </h3>
-                  <p className="text-gray-400 text-sm mt-1 min-h-[48px]">
-                    {proyecto.descripcion}
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-2 mt-auto">
-                    {proyecto.tecnologias.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="bg-blue-600 text-xs text-white px-3 py-1 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {proyectosPaginados.map((proyecto, index) => (
+              <div
+                key={index}
+                className="relative group [perspective:1000px] h-[430px] cursor-pointer"
+                onClick={() => esMovil && alternarGiro(index)}
+              >
+                <div
+                  className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
+                    esMovil
+                      ? giradas[index]
+                        ? "[transform:rotateY(180deg)]"
+                        : ""
+                      : "group-hover:[transform:rotateY(180deg)]"
+                  }`}
+                >
+
+                  {/* Frente */}
+                  <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col">
+                    <img src={proyecto.imagen} alt={proyecto.titulo} className="w-full h-40 object-cover rounded" />
+                    <h3 className="text-lg font-bold text-white mt-4 min-h-[64px]">
+                      {proyecto.titulo}
+                    </h3>
+                    <p className="text-gray-400 text-sm mt-1 min-h-[48px]">
+                      {proyecto.descripcion}
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-2 mt-auto">
+                      {proyecto.tecnologias.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="bg-blue-600 text-xs text-white px-3 py-1 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Reverso */}
+                  <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-6 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
+                    <h4 className="text-lg font-semibold mb-2">Detalles</h4>
+                    <p className="text-sm mb-4">{proyecto.detalles}</p>
+
+                    <span className="text-xs text-blue-300 font-medium mb-1">Prototipo</span>
+                    <img
+                      src={proyecto.prototipo}
+                      alt="Prototipo"
+                      onClick={(e) => {
+                        e.stopPropagation(); // evita que al hacer click se gire la tarjeta
+                        setImagenAmpliada(proyecto.prototipo);
+                      }}
+                      className="w-full h-32 object-contain bg-white p-2 rounded transition-transform duration-300 transform hover:scale-105 cursor-pointer"
+                    />
                   </div>
                 </div>
 
-                {/* Reverso */}
-                <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-6 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
-                  <h4 className="text-lg font-semibold mb-2">Detalles</h4>
-                  <p className="text-sm mb-4">{proyecto.detalles}</p>
-
-                  <span className="text-xs text-blue-300 font-medium mb-1">Prototipo</span>
-                  {/* Imagen de prototipo */}
-                  <img
-                    src={proyecto.prototipo}
-                    alt="Prototipo"
-                    onClick={() => setImagenAmpliada(proyecto.prototipo)}
-                    className="w-full h-32 object-contain bg-white p-2 rounded transition-transform duration-300 transform hover:scale-105 cursor-pointer"
-                  />
-                </div>
-
+                {/* Indicador táctil solo en móvil */}
+                {esMovil && !giradas[index] && (
+                  <div className="absolute bottom-2 right-2 text-xs text-blue-300 bg-gray-700 px-2 py-1 rounded-full z-10">
+                    Toca para ver más
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
         {/* BOTONES PAGINACION PROYECTOS */}
         <div className="flex justify-center mt-8 gap-4">
