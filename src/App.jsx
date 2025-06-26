@@ -98,7 +98,8 @@ function App() {
       github: "https://github.com/AlejandroSanchezCorredor/GPT-para-comunicaciones-automatizadas-en-Booking.git",
       prototipo: booking_prototipo,
       imagen: booking_project,
-      detalles: "Proyecto que automatiza respuestas en Booking.com usando GPT-4 y AWS. Ideal para propietarios con múltiples alojamientos que buscan ahorrar tiempo y ofrecer atención personalizada a gran escala."
+      detalles: "Proyecto que automatiza respuestas en Booking.com usando GPT-4 y AWS. Ideal para propietarios con múltiples alojamientos que buscan ahorrar tiempo y ofrecer atención personalizada a gran escala.",
+      calificacion: 10
     },
     {
       titulo: "Clasificación de personajes de Los Simpsons: Aprendizaje de modelos basados en redes neuronales",
@@ -107,7 +108,8 @@ function App() {
       github: "#",
       demo: "#",
       imagen: simpsons_project,
-      detalles: "Modelo convolucional CNN entrenado con imágenes de personajes de la serie para clasificación automática."
+      detalles: "Modelo convolucional CNN entrenado con imágenes de personajes de la serie para clasificación automática.",
+      calificacion: 10
     },
     {
       titulo: "Reconocimiento de género a partir de una imagen",
@@ -116,7 +118,8 @@ function App() {
       github: "#",
       demo: "#",
       imagen: gender_project,
-      detalles: "Web scraper y modelo de clasificación para predecir género con imágenes desde noticias."
+      detalles: "Web scraper y modelo de clasificación para predecir género con imágenes desde noticias.",
+      calificacion: 8
     },
     {
     titulo: "Test",
@@ -392,14 +395,13 @@ function App() {
                     <h4 className="text-lg font-semibold mb-2">Detalles</h4>
                     <p className="text-sm mb-4">{proyecto.detalles}</p>
 
+                    <span className="text-sm font-semibold text-blue-300 mb-1">Calificación: {proyecto.calificacion} / 10</span>
+
                     <span className="text-xs text-blue-300 font-medium mb-1">Prototipo</span>
                     <img
                       src={proyecto.prototipo}
                       alt="Prototipo"
-                      onClick={(e) => {
-                        e.stopPropagation(); // evita que al hacer click se gire la tarjeta
-                        setImagenAmpliada(proyecto.prototipo);
-                      }}
+                      onClick={() => setImagenAmpliada(proyecto.prototipo)}
                       className="w-full h-32 object-contain bg-white p-2 rounded transition-transform duration-300 transform hover:scale-105 cursor-pointer"
                     />
                   </div>
