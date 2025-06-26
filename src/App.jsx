@@ -135,11 +135,11 @@ function App() {
     },
     {
       titulo: "Clasificación de género: Aprendizaje de modelos basados en redes neuronales",
-      descripcion: "Sistema que extrae y analiza titulares de múltiples fuentes.",
+      descripcion: "Proyecto de deep learning centrado en la clasificación automática de género a partir de imágenes, utilizando modelos de redes neuronales convolucionales (CNN) con TensorFlow y Keras.",
       tecnologias: ["Tensorflow/Keras", "Python", "Pandas", "NumPy", "Matplotlib/Seaborn", "scikit-learn"],
       github: "https://github.com/AlejandroSanchezCorredor/Clasificacion-de-genero.git",
       imagen: gender_project,
-      detalles: "Web scraper y modelo de clasificación para predecir género con imágenes desde noticias.",
+      detalles: "Incluye procesamiento y limpieza de imágenes, entrenamiento de modelos CNN, evaluación del rendimiento y visualización de métricas. El proyecto también abarca técnicas de regularización, uso de modelos preentrenados y análisis exploratorio con Pandas y Matplotlib.",
       calificacion: 8,
       anio: 2024
     }
@@ -202,13 +202,10 @@ function App() {
       especialidad: "",
       nota: "Nota media: Por definir",
       imagen: cidaen,
-      resumen: "Formación especializada en Big Data, almacenamiento en la nube, machine learning e ingeniería de datos. Aplicación práctica con AWS, PySpark y herramientas de ETL.",
+      resumen: "Formación especializada en Big Data, almacenamiento en la nube, machine learning e ingeniería de datos. Aplicación práctica con AWS, PySpark, TensorFlow, Scikit-learn, Apache Spark, Docker, Serverless Framework, Prefect, MLflow, Plotly, SQL, NoSQL, y herramientas de ETL y visualización.",
       prototipo: cidaen,
     }
   ];
-  
-  
-
 
 
   return (
@@ -403,7 +400,7 @@ function App() {
             {proyectosPaginados.map((proyecto, index) => (
               <div
                 key={index}
-                className="relative group [perspective:1000px] h-[430px] cursor-pointer"
+                className="relative group [perspective:1000px] h-[450px] cursor-pointer"
                 onClick={() => esMovil && alternarGiro(index)}
               >
                 <div
@@ -556,8 +553,6 @@ function App() {
           ))}
         </div>
       </section>
-
-
 
         {/* PARTE DE IMAGENES EN PANTALLA COMPLETA CUANDO HACES CLICK */}
         {imagenAmpliada && (
