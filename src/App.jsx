@@ -160,6 +160,17 @@ function App() {
     });
   };
 
+  const [formacionesGiradas, setFormacionesGiradas] = useState([]);
+
+  const alternarGiroFormacion = (index) => {
+    setFormacionesGiradas((prev) => {
+      const nuevo = [...prev];
+      nuevo[index] = !nuevo[index];
+      return nuevo;
+    });
+  };
+  
+
 
 
 
@@ -408,63 +419,77 @@ function App() {
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Formación Académica</h2>
           <div className="grid md:grid-cols-2 gap-6">
 
-            {/* Tarjeta Grado */}
-            <div className="relative group [perspective:1000px] h-[400px]">
-              <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+            {[...Array(2)].map((_, i) => (
+              <div
+                key={i}
+                className="relative group [perspective:1000px] h-[400px] cursor-pointer"
+                onClick={() => esMovil && alternarGiroFormacion(i)}
+              >
+                <div
+                  className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
+                    esMovil
+                      ? formacionesGiradas[i]
+                        ? "[transform:rotateY(180deg)]"
+                        : ""
+                      : "group-hover:[transform:rotateY(180deg)]"
+                  }`}
+                >
+                  {/* Frente */}
+                  <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col items-center">
+                    <img
+                      src={i === 0 ? esiiab : cidaen}
+                      alt={i === 0 ? "UCLM" : "UCLM"}
+                      className="w-full h-40 object-contain bg-white p-2 rounded"
+                    />
+                    <h3 className="text-lg font-bold text-white text-center mt-2">
+                      {i === 0
+                        ? "Grado en Ingeniería Informática"
+                        : "Máster en Ciencia e Ingeniería de Datos en la Nube"}
+                    </h3>
+                    <p className="text-gray-400 text-sm text-center mt-1">
+                      {i === 0 ? "UCLM · 2016 - 2020" : "UCLM · 2024 - 2025"}
+                    </p>
+                    {i === 0 && (
+                      <p className="text-gray-400 text-sm text-center mt-1">
+                        Especialización en Computación
+                      </p>
+                    )}
+                    <p className="text-blue-400 font-semibold text-sm mt-2">
+                      {i === 0 ? "Nota media: 8.15 / 10" : "Nota media: Por definir"}
+                    </p>
+                  </div>
 
-                {/* Frente */}
-                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col items-center">
-                  <img src={esiiab} alt="UCLM" className="w-full h-40 object-contain bg-white p-2 rounded" />
-                  <h3 className="text-lg font-bold text-white text-center mt-2">Grado en Ingeniería Informática</h3>
-                  <p className="text-gray-400 text-sm text-center mt-1">UCLM · 2016 - 2020</p>
-                  <p className="text-gray-400 text-sm text-center mt-1">Especialización en Computación</p>
-                  <p className="text-blue-400 font-semibold text-sm mt-2">Nota media: 8.15 / 10</p>
+                  {/* Reverso */}
+                  <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-4 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
+                    <h4 className="text-lg font-semibold mb-2">Más información</h4>
+                    <p className="text-sm mb-2">
+                      {i === 0
+                        ? "A lo largo del Grado en Ingeniería Informática de la UCLM, he adquirido una sólida formación en algoritmos, estructuras de datos, ingeniería del software, etc. Las asignaturas cursadas se muestran a continuación."
+                        : "Formación especializada en Big Data, almacenamiento en la nube, machine learning e ingeniería de datos. Aplicación práctica con AWS, PySpark y herramientas de ETL."}
+                    </p>
+                    <h5 className="text-sm font-semibold text-blue-300 mt-3 mb-2">
+                      Resumen de calificaciones
+                    </h5>
+                    <img
+                      src={notas_grado}
+                      alt="Resumen notas grado"
+                      onClick={() => setImagenAmpliada(notas_grado)}
+                      className="w-full h-32 object-contain bg-white p-2 rounded mt-2 transition-transform duration-300 transform hover:scale-105 cursor-pointer"
+                    />
+                  </div>
                 </div>
 
-                {/* Reverso */}
-                <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-4 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
-                  <h4 className="text-lg font-semibold mb-2">Más información</h4>
-                  <p className="text-sm mb-2">
-                    A lo largo del Grado en Ingeniería Informática de la Universidad de Castilla-La Mancha (UCLM), he adquirido una sólida formación en diversos campos de la informática, abarcando desde fundamentos teóricos hasta aplicaciones prácticas. Las asignaturas que he cursado han sido organizadas en varias categorías, cada una enfocada en un aspecto esencial de la informática. A continuación, se muestran las calificaciones obtenidas en cada asignatura.
-                  </p>
-                  <h5 className="text-sm font-semibold text-blue-300 mt-4 mb-1">
-                    Resumen de calificaciones
-                  </h5>
-                  <img
-                    src={notas_grado}
-                    alt="Resumen notas grado"
-                    onClick={() => setImagenAmpliada(notas_grado)}
-                    className="w-full h-32 object-contain bg-white p-2 rounded transition-transform duration-300 transform hover:scale-105 cursor-pointer"
-                  />
-                </div>
+                {/* Indicador táctil */}
+                {esMovil && !formacionesGiradas[i] && (
+                  <div className="absolute bottom-2 right-2 text-xs text-blue-300 bg-gray-700 px-2 py-1 rounded-full z-10">
+                    Toca para ver más
+                  </div>
+                )}
               </div>
-            </div>
-
-            {/* Tarjeta Máster */}
-            <div className="relative group [perspective:1000px] h-[400px]">
-              <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-
-                {/* Frente */}
-                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col items-center">
-                  <img src={cidaen} alt="VIU" className="w-full h-40 object-contain bg-white p-2 rounded" />
-                  <h3 className="text-lg font-bold text-white text-center mt-2">Máster en Ciencia e Ingeniería de Datos en la Nube</h3>
-                  <p className="text-gray-400 text-sm text-center mt-1">UCLM · 2024 - 2025</p>
-                  <p className="text-blue-400 font-semibold text-sm mt-2">Nota media: Por definir</p>
-                </div>
-
-                {/* Reverso */}
-                <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-4 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
-                  <h4 className="text-lg font-semibold mb-2">Más información</h4>
-                  <p className="text-sm mb-2">
-                    Formación especializada en Big Data, almacenamiento en la nube, modelos de machine learning e ingeniería de datos. Aplicación práctica con AWS, PySpark y herramientas de ETL.
-                  </p>
-                  <img src={cidaen} alt="Resumen notas máster" className="w-full h-32 object-contain bg-white p-2 rounded mt-auto" />
-                </div>
-              </div>
-            </div>
-
+            ))}
           </div>
         </section>
+
 
         {/* PARTE DE IMAGENES EN PANTALLA COMPLETA CUANDO HACES CLICK */}
         {imagenAmpliada && (
