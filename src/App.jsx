@@ -189,7 +189,7 @@ function App() {
   const formaciones = [
     {
       titulo: "Grado en Ingeniería Informática",
-      institucion: "UCLM · 2016 - 2020",
+      institucion: "UCLM · 2020 - 2024",
       especialidad: "Especialización en Computación",
       nota: "Nota media: 8.15 / 10",
       imagen: esiiab,
@@ -583,7 +583,7 @@ function App() {
             <div className="bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col items-center hover:scale-105 transition-transform duration-300">
               <img src={teknei} alt="Teknei" className="w-full h-32 object-contain bg-white p-2 rounded" />
               <h3 className="text-lg font-bold text-white text-center mt-4">Programa Robles: Desarrollo TFG (Prácticas)</h3>
-              <p className="text-gray-400 text-sm text-center">Teknei · 2025 (Febrero - Junio)</p>
+              <p className="text-gray-400 text-sm text-center">Teknei · 2024 (Febrero - Mayo)</p>
               <ul className="text-gray-300 text-sm list-disc list-inside mt-3 text-left">
               <li>Implementación de soluciones en la nube utilizando AWS y Serverless Framework.</li>
               <li>Desarrollo de APIs REST con Python para procesamiento de datos y automatización.</li>
