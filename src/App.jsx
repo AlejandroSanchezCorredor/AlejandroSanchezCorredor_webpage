@@ -16,12 +16,22 @@ import html_logo from './assets/html.png';
 import nosql_logo from './assets/nosql.png';
 import selenium_logo from './assets/selenium.png';
 import angular_logo from './assets/angular.png';
+import scikit_learn_logo from './assets/scikit_learn_logo.png';
+import streamlit_logo from './assets/streamlit_logo.png';
+import jupyter_logo from './assets/jupyter_logo.png';
+
+import pandas_logo from './assets/pandas_logo.png';
+import numpy_logo from './assets/numpy_logo.png';
+import matplotlib_logo from './assets/matplotlib_logo.png';
+
 import background_home from './assets/background_home.mp4';
 
 import simpsons_project from './assets/simpsons.jpg'
 import booking_project from './assets/booking.jpg'
 import booking_prototipo from './assets/tfg.png'
 import gender_project from './assets/recon.jpg'
+import nba_project from './assets/nba_project.jpg'
+import nba_prototipo from './assets/nba_prototipo.png'
 
 import esiiab from './assets/esiiab.png'
 import cidaen from './assets/cidaen.jpg'
@@ -99,36 +109,39 @@ function App() {
       prototipo: booking_prototipo,
       imagen: booking_project,
       detalles: "Proyecto que automatiza respuestas en Booking.com usando GPT-4 y AWS. Ideal para propietarios con múltiples alojamientos que buscan ahorrar tiempo y ofrecer atención personalizada a gran escala.",
-      calificacion: 10
+      calificacion: 10,
+      anio: 2024
+    },
+    {
+      titulo: "TFM: Predicción de resultados de partidos en la NBA",
+      descripcion: "Predicción de partidos de la NBA con Machine Learning.",
+      tecnologias: ["Python", "Scikit-learn", "Pandas", "Streamlit", "Matplotlib/Seaborn"],
+      github: "https://github.com/AlejandroSanchezCorredor/TFM-Prediccion-de-resultados-de-partidos-en-la-NBA.git",
+      prototipo: nba_prototipo,
+      imagen: nba_project,
+      detalles: "Sistema de predicción de partidos de la NBA mediante aprendizaje automático. Incluye reconstrucción de estadísticas previas con medias móviles para evitar fuga de datos, validación temporal con TimeSeriesSplit y despliegue de resultados en una app Streamlit.",
+      calificacion: 123,
+      anio: 2025
     },
     {
       titulo: "Clasificación de personajes de Los Simpsons: Aprendizaje de modelos basados en redes neuronales",
       descripcion: "Red neuronal para clasificar imágenes con más del 90% de precisión.",
-      tecnologias: ["Tensorflow", "Python", "Pandas"],
-      github: "#",
-      demo: "#",
+      tecnologias: ["Tensorflow", "Python", "Pandas", "NumPy", "Matplotlib/Seaborn", "Scikit-learn"],
+      github: "https://github.com/AlejandroSanchezCorredor/Clasificacion-de-personajes-de-Los-Simpsons.git",
       imagen: simpsons_project,
       detalles: "Modelo convolucional CNN entrenado con imágenes de personajes de la serie para clasificación automática.",
-      calificacion: 10
+      calificacion: 10,
+      anio: 2023
     },
     {
-      titulo: "Reconocimiento de género a partir de una imagen",
+      titulo: "Clasificación de género: Aprendizaje de modelos basados en redes neuronales",
       descripcion: "Sistema que extrae y analiza titulares de múltiples fuentes.",
-      tecnologias: ["Selenium", "Python", "BeautifulSoup"],
-      github: "#",
-      demo: "#",
+      tecnologias: ["Tensorflow/Keras", "Python", "Pandas", "NumPy", "Matplotlib/Seaborn", "scikit-learn"],
+      github: "https://github.com/AlejandroSanchezCorredor/Clasificacion-de-genero.git",
       imagen: gender_project,
       detalles: "Web scraper y modelo de clasificación para predecir género con imágenes desde noticias.",
-      calificacion: 8
-    },
-    {
-    titulo: "Test",
-    descripcion: "Test.",
-    tecnologias: ["Selenium", "Python", "BeautifulSoup"],
-    github: "#",
-    demo: "#",
-    imagen: gender_project,
-    detalles: "Test."
+      calificacion: 8,
+      anio: 2024
     }
   ];
 
@@ -313,38 +326,72 @@ function App() {
             Soy una persona autodidacta, proactiva y con muchas ganas de aprender. Me encuentro en constante formación para convertirme en un desarrollador completo.
           </p>
 
-          {/* Grid de tecnologías */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[{ nombre: 'Python', nivel: 'Avanzado', icono: python_logo },
-              { nombre: 'Serverless Framework', nivel: 'Intermedio', icono: serverless_logo },
-              { nombre: 'SQL', nivel: 'Intermedio', icono: sql_logo },
-              { nombre: 'Java', nivel: 'Intermedio', icono: java_logo },
-              { nombre: 'Tensorflow', nivel: 'Intermedio', icono: tensorflow_logo },
-              { nombre: 'AWS', nivel: 'Intermedio', icono: aws_logo },
-              { nombre: 'HTML/CSS', nivel: 'Intermedio', icono: html_logo },
-              { nombre: 'NoSQL', nivel: 'Intermedio', icono: nosql_logo },
-              { nombre: 'Selenium', nivel: 'Intermedio', icono: selenium_logo },
-              { nombre: 'Angular', nivel: 'Bajo', icono: angular_logo }].map((tech) => {
+          {[
+            {
+              categoria: 'Lenguajes', tecnologias: [
+                { nombre: 'Python', nivel: 'Avanzado', icono: python_logo },
+                { nombre: 'SQL', nivel: 'Intermedio', icono: sql_logo },
+                { nombre: 'Java', nivel: 'Intermedio', icono: java_logo },
+              ]
+            },
+            {
+              categoria: 'Machine Learning', tecnologias: [
+                { nombre: 'Tensorflow', nivel: 'Intermedio', icono: tensorflow_logo },
+                { nombre: 'Scikit-learn', nivel: 'Intermedio', icono: scikit_learn_logo },
+              ]
+            },
+            {
+              categoria: 'Análisis y Procesamiento de Datos', tecnologias: [
+                { nombre: 'Pandas', nivel: 'Intermedio', icono: pandas_logo },
+                { nombre: 'NumPy', nivel: 'Intermedio', icono: numpy_logo },
+                { nombre: 'Matplotlib/Seaborn', nivel: 'Intermedio', icono: matplotlib_logo },
+              ]
+            },
+            {
+              categoria: 'Frontend', tecnologias: [
+                { nombre: 'Streamlit', nivel: 'Intermedio', icono: streamlit_logo },
+                { nombre: 'Angular', nivel: 'Bajo', icono: angular_logo },
+                { nombre: 'HTML/CSS', nivel: 'Intermedio', icono: html_logo },
+              ]
+            },
+            {
+              categoria: 'DevOps / Infraestructura', tecnologias: [
+                { nombre: 'Serverless Framework', nivel: 'Intermedio', icono: serverless_logo },
+                { nombre: 'AWS', nivel: 'Intermedio', icono: aws_logo },
+              ]
+            },
+            {
+              categoria: 'Herramientas', tecnologias: [
+                { nombre: 'Jupyter Notebook', nivel: 'Intermedio', icono: jupyter_logo },
+                { nombre: 'Selenium', nivel: 'Intermedio', icono: selenium_logo },
+              ]
+            },
+          ].map((grupo) => (
+            <div key={grupo.categoria} className="mb-6">
+              <h3 className="text-xl font-semibold text-blue-300 mb-2">{grupo.categoria}</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {grupo.tecnologias.map((tech) => {
+                  const nivelColor = {
+                    'Avanzado': 'bg-green-500',
+                    'Intermedio': 'bg-blue-500',
+                    'Bajo': 'bg-red-500',
+                  }[tech.nivel];
 
-              const nivelColor = {
-                'Avanzado': 'bg-green-500',
-                'Intermedio': 'bg-blue-500',
-                'Bajo': 'bg-red-500',
-              }[tech.nivel];
-
-              return (
-                <div key={tech.nombre} className="bg-gray-700 rounded-lg p-4 shadow-md flex items-center gap-4 hover:shadow-lg hover:scale-105 transition-transform duration-200">
-                  <img src={tech.icono} alt={tech.nombre} className="w-12 h-12 object-contain aspect-square" />
-                  <div className="flex flex-col">
-                    <span className="text-white font-semibold">{tech.nombre}</span>
-                    <span className={`text-xs mt-1 inline-block px-2 py-0.5 rounded-full text-white w-max ${nivelColor}`}>
-                      {tech.nivel}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                  return (
+                    <div key={tech.nombre} className="bg-gray-700 rounded-lg p-4 shadow-md flex items-center gap-4 hover:shadow-lg hover:scale-105 transition-transform duration-200">
+                      <img src={tech.icono} alt={tech.nombre} className="w-12 h-12 object-contain aspect-square" />
+                      <div className="flex flex-col">
+                        <span className="text-white font-semibold">{tech.nombre}</span>
+                        <span className={`text-xs mt-1 inline-block px-2 py-0.5 rounded-full text-white w-max ${nivelColor}`}>
+                          {tech.nivel}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </section>
 
 
@@ -395,15 +442,35 @@ function App() {
                     <h4 className="text-lg font-semibold mb-2">Detalles</h4>
                     <p className="text-sm mb-4">{proyecto.detalles}</p>
 
-                    <span className="text-sm font-semibold text-blue-300 mb-1">Calificación: {proyecto.calificacion} / 10</span>
+                    <div className="text-sm text-blue-300 mb-2">
+                      <p><span className="font-semibold">Año:</span> {proyecto.anio}</p>
+                      <p><span className="font-semibold">Calificación:</span> {proyecto.calificacion} / 10</p>
+                    </div>
 
-                    <span className="text-xs text-blue-300 font-medium mb-1">Prototipo</span>
-                    <img
-                      src={proyecto.prototipo}
-                      alt="Prototipo"
-                      onClick={() => setImagenAmpliada(proyecto.prototipo)}
-                      className="w-full h-32 object-contain bg-white p-2 rounded transition-transform duration-300 transform hover:scale-105 cursor-pointer"
-                    />
+                    {proyecto.prototipo && (
+                      <>
+                        <span className="text-xs text-blue-300 font-medium mb-1">Prototipo</span>
+                        <img
+                          src={proyecto.prototipo}
+                          alt="Prototipo"
+                          onClick={() => setImagenAmpliada(proyecto.prototipo)}
+                          className="w-full h-32 object-contain rounded-lg shadow-lg cursor-pointer transition-transform duration-300 transform hover:scale-105"
+                          />
+                      </>
+                    )}
+
+                    {/* Enlace GitHub */}
+                    {proyecto.github && (
+                      <a
+                        href={proyecto.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-blue-400 hover:underline mt-4"
+                      >
+                        GitHub
+                      </a>
+                    )}
+
                   </div>
                 </div>
 
@@ -422,14 +489,14 @@ function App() {
           <button
             onClick={() => setPaginaActual(p => Math.max(p - 1, 1))}
             disabled={paginaActual === 1}
-            className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50"
+            className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50 cursor-pointer"
           >
             Anterior
           </button>
           <button
             onClick={() => setPaginaActual(p => Math.min(p + 1, totalPaginas))}
             disabled={paginaActual === totalPaginas}
-            className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50"
+            className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50 cursor-pointer"
           >
             Siguiente
           </button>
@@ -588,7 +655,7 @@ function App() {
             <input type="text" name="name" required placeholder="Tu nombre" className="w-full p-2 rounded bg-gray-700 text-white" />
             <input type="email" name="email" required placeholder="Tu correo" className="w-full p-2 rounded bg-gray-700 text-white" />
             <textarea name="message" required placeholder="Escribe tu mensaje" className="w-full p-2 rounded bg-gray-700 text-white"></textarea>
-            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded">Enviar mensaje</button>
+            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded cursor-pointer"> Enviar mensaje </button>
           </form>
         </section>
 
