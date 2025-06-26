@@ -386,7 +386,7 @@ function App() {
 
                 {/* Indicador táctil solo en móvil */}
                 {esMovil && !giradas[index] && (
-                  <div className="absolute bottom-2 right-2 text-xs text-blue-300 bg-gray-700 px-2 py-1 rounded-full z-10">
+                  <div className="absolute top-2 right-2 text-xs text-blue-300 bg-gray-700 px-2 py-1 rounded-full z-10">
                     Toca para ver más
                   </div>
                 )}
