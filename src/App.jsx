@@ -18,6 +18,18 @@ import selenium_logo from './assets/selenium.png';
 import angular_logo from './assets/angular.png';
 import background_home from './assets/background_home.mp4';
 
+import simpsons_project from './assets/simpsons.jpg'
+import booking_project from './assets/booking.jpg'
+import booking_prototipo from './assets/tfg.png'
+import gender_project from './assets/recon.jpg'
+
+import esiiab from './assets/esiiab.png'
+import cidaen from './assets/cidaen.jpg'
+import notas_grado from './assets/notas_agrupadas.png'
+
+import teknei from './assets/teknei.png'
+import planea from './assets/planea.png'
+
 
 import './App.css';
 
@@ -76,6 +88,60 @@ function App() {
       return () => clearTimeout(pause);
     }
   }, [letraIndex, fraseIndex]);
+
+
+  const proyectos = [
+    {
+      titulo: "TFG: Uso de GPT para comunicaciones automatizadas en Booking",
+      descripcion: "Automatización de respuestas a clientes en Booking.com usando modelos GPT y AWS Serverless.",
+      tecnologias: ["GPT-4", "AWS", "Angular", "Serverless", "Python", "Selenium"],
+      github: "https://github.com/AlejandroSanchezCorredor/GPT-para-comunicaciones-automatizadas-en-Booking.git",
+      prototipo: booking_prototipo,
+      imagen: booking_project,
+      detalles: "Proyecto que automatiza respuestas en Booking.com usando GPT-4 y AWS. Ideal para propietarios con múltiples alojamientos que buscan ahorrar tiempo y ofrecer atención personalizada a gran escala."
+    },
+    {
+      titulo: "Clasificación de personajes de Los Simpsons: Aprendizaje de modelos basados en redes neuronales",
+      descripcion: "Red neuronal para clasificar imágenes con más del 90% de precisión.",
+      tecnologias: ["Tensorflow", "Python", "Pandas"],
+      github: "#",
+      demo: "#",
+      imagen: simpsons_project,
+      detalles: "Modelo convolucional CNN entrenado con imágenes de personajes de la serie para clasificación automática."
+    },
+    {
+      titulo: "Reconocimiento de género a partir de una imagen",
+      descripcion: "Sistema que extrae y analiza titulares de múltiples fuentes.",
+      tecnologias: ["Selenium", "Python", "BeautifulSoup"],
+      github: "#",
+      demo: "#",
+      imagen: gender_project,
+      detalles: "Web scraper y modelo de clasificación para predecir género con imágenes desde noticias."
+    },
+    {
+    titulo: "Test",
+    descripcion: "Test.",
+    tecnologias: ["Selenium", "Python", "BeautifulSoup"],
+    github: "#",
+    demo: "#",
+    imagen: gender_project,
+    detalles: "Test."
+    }
+  ];
+
+  const proyectosPorPagina = 3;
+  const [paginaActual, setPaginaActual] = useState(1);
+
+  const proyectosPaginados = proyectos.slice(
+    (paginaActual - 1) * proyectosPorPagina,
+    paginaActual * proyectosPorPagina
+  );
+
+  const totalPaginas = Math.ceil(proyectos.length / proyectosPorPagina);
+
+  const [imagenAmpliada, setImagenAmpliada] = useState(null);
+
+
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 w-full">
@@ -231,72 +297,183 @@ function App() {
         <section id="proyectos" className="max-w-6xl mx-auto px-4 py-12">
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Proyectos</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            {/* Tarjeta de proyecto */}
-            {[
-              {
-                titulo: "Dashboard de Ventas",
-                descripcion: "Visualización interactiva de KPIs de ventas con filtros dinámicos.",
-                tecnologias: ["React", "Tailwind", "Chart.js"],
-                github: "#",
-                demo: "#",
-                imagen: "https://via.placeholder.com/600x400?text=Dashboard"
-              },
-              {
-                titulo: "Clasificador de Imágenes",
-                descripcion: "Red neuronal para clasificar imágenes con más del 90% de precisión.",
-                tecnologias: ["Tensorflow", "Python", "Pandas"],
-                github: "#",
-                demo: "#",
-                imagen: "https://via.placeholder.com/600x400?text=AI+Model"
-              },
-              {
-                titulo: "Scraper de Noticias",
-                descripcion: "Sistema que extrae y analiza titulares de múltiples fuentes.",
-                tecnologias: ["Selenium", "Python", "BeautifulSoup"],
-                github: "#",
-                demo: "#",
-                imagen: "https://via.placeholder.com/600x400?text=Scraper"
-              }
-            ].map((proyecto, index) => (
-              <div key={index} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                <img src={proyecto.imagen} alt={proyecto.titulo} className="w-full h-48 object-cover" />
-                <div className="p-6 space-y-2">
-                  <h3 className="text-xl font-semibold text-white">{proyecto.titulo}</h3>
-                  <p className="text-gray-400 text-sm">{proyecto.descripcion}</p>
-                  <div className="flex flex-wrap gap-2 mt-2">
+          {proyectosPaginados.map((proyecto, index) => (
+            <div key={index} className="relative group [perspective:1000px] h-[430px]">
+              <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+                {/* Frente */}
+                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col">
+                  <img src={proyecto.imagen} alt={proyecto.titulo} className="w-full h-40 object-cover rounded" />
+                  <h3 className="text-lg font-bold text-white mt-4 min-h-[64px]">
+                    {proyecto.titulo}
+                  </h3>
+                  <p className="text-gray-400 text-sm mt-1 min-h-[48px]">
+                    {proyecto.descripcion}
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2 mt-auto">
                     {proyecto.tecnologias.map((tech, i) => (
-                      <span key={i} className="bg-blue-600 text-xs text-white px-2 py-0.5 rounded-full">{tech}</span>
+                      <span
+                        key={i}
+                        className="bg-blue-600 text-xs text-white px-3 py-1 rounded-full"
+                      >
+                        {tech}
+                      </span>
                     ))}
                   </div>
-                  <div className="flex gap-4 mt-4">
-                    <a href={proyecto.github} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm">GitHub</a>
-                    <a href={proyecto.demo} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm">Demo</a>
-                  </div>
                 </div>
+
+                {/* Reverso */}
+                <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-6 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
+                  <h4 className="text-lg font-semibold mb-2">Detalles</h4>
+                  <p className="text-sm mb-4">{proyecto.detalles}</p>
+
+                  <span className="text-xs text-blue-300 font-medium mb-1">Prototipo</span>
+                  {/* Imagen de prototipo */}
+                  <img
+                    src={proyecto.prototipo}
+                    alt="Prototipo"
+                    onClick={() => setImagenAmpliada(proyecto.prototipo)}
+                    className="w-full h-32 object-contain bg-white p-2 rounded transition-transform duration-300 transform hover:scale-105 cursor-pointer"
+                  />
+                </div>
+
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+
+        {/* BOTONES PAGINACION PROYECTOS */}
+        <div className="flex justify-center mt-8 gap-4">
+          <button
+            onClick={() => setPaginaActual(p => Math.max(p - 1, 1))}
+            disabled={paginaActual === 1}
+            className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50"
+          >
+            Anterior
+          </button>
+          <button
+            onClick={() => setPaginaActual(p => Math.min(p + 1, totalPaginas))}
+            disabled={paginaActual === totalPaginas}
+            className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50"
+          >
+            Siguiente
+          </button>
+        </div>
         </section>
 
 
         {/* FORMACIÓN */}
-        <section id="formacion" className="max-w-3xl mx-auto bg-gray-800 rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-2">Formación Académica</h2>
-          <ul className="text-gray-300 list-disc list-inside space-y-2">
-            <li>Nombre del curso o carrera - Institución (año)</li>
-            <li>Otro estudio relevante - Institución (año)</li>
-          </ul>
+        <section id="formacion" className="max-w-5xl mx-auto px-4 py-12">
+          <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Formación Académica</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+
+            {/* Tarjeta Grado */}
+            <div className="relative group [perspective:1000px] h-[400px]">
+              <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+                {/* Frente */}
+                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col items-center">
+                  <img src={esiiab} alt="UCLM" className="w-full h-40 object-contain bg-white p-2 rounded" />
+                  <h3 className="text-lg font-bold text-white text-center mt-2">Grado en Ingeniería Informática</h3>
+                  <p className="text-gray-400 text-sm text-center mt-1">UCLM · 2016 - 2020</p>
+                  <p className="text-gray-400 text-sm text-center mt-1">Especialización en Computación</p>
+                  <p className="text-blue-400 font-semibold text-sm mt-2">Nota media: 8.15 / 10</p>
+                </div>
+
+                {/* Reverso */}
+                <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-4 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
+                  <h4 className="text-lg font-semibold mb-2">Más información</h4>
+                  <p className="text-sm mb-2">
+                    A lo largo del Grado en Ingeniería Informática de la Universidad de Castilla-La Mancha (UCLM), he adquirido una sólida formación en diversos campos de la informática, abarcando desde fundamentos teóricos hasta aplicaciones prácticas. Las asignaturas que he cursado han sido organizadas en varias categorías, cada una enfocada en un aspecto esencial de la informática. A continuación, se muestran las calificaciones obtenidas en cada asignatura.
+                  </p>
+                  <h5 className="text-sm font-semibold text-blue-300 mt-4 mb-1">
+                    Resumen de calificaciones
+                  </h5>
+                  <img
+                    src={notas_grado}
+                    alt="Resumen notas grado"
+                    onClick={() => setImagenAmpliada(notas_grado)}
+                    className="w-full h-32 object-contain bg-white p-2 rounded transition-transform duration-300 transform hover:scale-105 cursor-pointer"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Tarjeta Máster */}
+            <div className="relative group [perspective:1000px] h-[400px]">
+              <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+                {/* Frente */}
+                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col items-center">
+                  <img src={cidaen} alt="VIU" className="w-full h-40 object-contain bg-white p-2 rounded" />
+                  <h3 className="text-lg font-bold text-white text-center mt-2">Máster en Ciencia e Ingeniería de Datos en la Nube</h3>
+                  <p className="text-gray-400 text-sm text-center mt-1">UCLM · 2024 - 2025</p>
+                  <p className="text-blue-400 font-semibold text-sm mt-2">Nota media: Por definir</p>
+                </div>
+
+                {/* Reverso */}
+                <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-4 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
+                  <h4 className="text-lg font-semibold mb-2">Más información</h4>
+                  <p className="text-sm mb-2">
+                    Formación especializada en Big Data, almacenamiento en la nube, modelos de machine learning e ingeniería de datos. Aplicación práctica con AWS, PySpark y herramientas de ETL.
+                  </p>
+                  <img src={cidaen} alt="Resumen notas máster" className="w-full h-32 object-contain bg-white p-2 rounded mt-auto" />
+                </div>
+              </div>
+            </div>
+
+          </div>
         </section>
 
+        {/* PARTE DE IMAGENES EN PANTALLA COMPLETA CUANDO HACES CLICK */}
+        {imagenAmpliada && (
+          <div
+            className="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50"
+            onClick={() => setImagenAmpliada(null)}
+          >
+            <img
+              src={imagenAmpliada}
+              alt="Imagen ampliada"
+              className="max-w-full max-h-full rounded shadow-lg"
+            />
+          </div>
+        )}
+
         {/* EXPERIENCIA */}
-        <section id="experiencia" className="max-w-3xl mx-auto bg-gray-800 rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-2">Experiencia Laboral</h2>
-          <ul className="text-gray-300 list-disc list-inside space-y-2">
-            <li>Nombre del puesto - Empresa (año)</li>
-            <li>Responsabilidades principales y logros destacados</li>
-          </ul>
+        <section id="experiencia" className="max-w-5xl mx-auto px-4 py-12">
+          <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Experiencia Laboral</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+
+            {/* Tarjeta Teknei */}
+            <div className="bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col items-center hover:scale-105 transition-transform duration-300">
+              <img src={teknei} alt="Teknei" className="w-full h-32 object-contain bg-white p-2 rounded" />
+              <h3 className="text-lg font-bold text-white text-center mt-4">Programa Robles: Desarrollo TFG (Prácticas)</h3>
+              <p className="text-gray-400 text-sm text-center">Teknei · 2025 (Febrero - Junio)</p>
+              <ul className="text-gray-300 text-sm list-disc list-inside mt-3 text-left">
+              <li>Implementación de soluciones en la nube utilizando AWS y Serverless Framework.</li>
+              <li>Desarrollo de APIs REST con Python para procesamiento de datos y automatización.</li>
+              <li>Uso de contenedores Docker para despliegue y desarrollo en entornos aislados.</li>
+              <li>Diseño de interfaces interactivas con Angular para visualización y control de procesos.</li>
+              </ul>
+            </div>
+
+            {/* Tarjeta Planea */}
+            <div className="bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col items-center hover:scale-105 transition-transform duration-300">
+              <img src={planea} alt="Planea" className="w-full h-32 object-contain bg-white p-2 rounded" />
+              <h3 className="text-lg font-bold text-white text-center mt-4">Científico de datos</h3>
+              <p className="text-gray-400 text-sm text-center">Planea Energía · 2024 (Noviembre) - Actualidad</p>
+              <ul className="text-gray-300 text-sm list-disc list-inside mt-3 text-left">
+                <li>Desarrollo de modelos de previsión (forecasting) para series temporales utilizando Prophet (Facebook).</li>
+                <li>Diseño y mantenimiento de procesos ETL mediante Pentaho (Kettle).</li>
+                <li>Gestión de bases de datos relacionales (PostgreSQL) y NoSQL (MongoDB).</li>
+                <li>Evaluación y pruebas de modelos de IA: GPT, Julius, Ollama, entre otros.</li>
+              </ul>
+            </div>
+
+          </div>
         </section>
+
 
         {/* CONTACTO */}
         <section id="contacto" className="max-w-4xl mx-auto bg-gray-800 rounded-xl shadow-lg p-6">
