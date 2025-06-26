@@ -169,8 +169,29 @@ function App() {
       return nuevo;
     });
   };
-  
 
+  const formaciones = [
+    {
+      titulo: "Grado en Ingeniería Informática",
+      institucion: "UCLM · 2016 - 2020",
+      especialidad: "Especialización en Computación",
+      nota: "Nota media: 8.15 / 10",
+      imagen: esiiab,
+      resumen: "A lo largo del Grado en Ingeniería Informática de la UCLM, he adquirido una sólida formación en algoritmos, estructuras de datos, ingeniería del software, etc. Las asignaturas cursadas se muestran a continuación.",
+      prototipo: notas_grado,
+    },
+    {
+      titulo: "Máster en Ciencia e Ingeniería de Datos en la Nube",
+      institucion: "UCLM · 2024 - 2025",
+      especialidad: "",
+      nota: "Nota media: Por definir",
+      imagen: cidaen,
+      resumen: "Formación especializada en Big Data, almacenamiento en la nube, machine learning e ingeniería de datos. Aplicación práctica con AWS, PySpark y herramientas de ETL.",
+      prototipo: cidaen,
+    }
+  ];
+  
+  
 
 
 
@@ -416,79 +437,57 @@ function App() {
 
         {/* FORMACIÓN */}
         <section id="formacion" className="max-w-5xl mx-auto px-4 py-12">
-          <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Formación Académica</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-
-            {[...Array(2)].map((_, i) => (
-              <div
-                key={i}
-                className="relative group [perspective:1000px] h-[400px] cursor-pointer"
-                onClick={() => esMovil && alternarGiroFormacion(i)}
-              >
-                <div
-                  className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
-                    esMovil
-                      ? formacionesGiradas[i]
-                        ? "[transform:rotateY(180deg)]"
-                        : ""
-                      : "group-hover:[transform:rotateY(180deg)]"
-                  }`}
-                >
-                  {/* Frente */}
-                  <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col items-center">
-                    <img
-                      src={i === 0 ? esiiab : cidaen}
-                      alt={i === 0 ? "UCLM" : "UCLM"}
-                      className="w-full h-40 object-contain bg-white p-2 rounded"
-                    />
-                    <h3 className="text-lg font-bold text-white text-center mt-2">
-                      {i === 0
-                        ? "Grado en Ingeniería Informática"
-                        : "Máster en Ciencia e Ingeniería de Datos en la Nube"}
-                    </h3>
-                    <p className="text-gray-400 text-sm text-center mt-1">
-                      {i === 0 ? "UCLM · 2016 - 2020" : "UCLM · 2024 - 2025"}
-                    </p>
-                    {i === 0 && (
-                      <p className="text-gray-400 text-sm text-center mt-1">
-                        Especialización en Computación
-                      </p>
-                    )}
-                    <p className="text-blue-400 font-semibold text-sm mt-2">
-                      {i === 0 ? "Nota media: 8.15 / 10" : "Nota media: Por definir"}
-                    </p>
-                  </div>
-
-                  {/* Reverso */}
-                  <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-4 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
-                    <h4 className="text-lg font-semibold mb-2">Más información</h4>
-                    <p className="text-sm mb-2">
-                      {i === 0
-                        ? "A lo largo del Grado en Ingeniería Informática de la UCLM, he adquirido una sólida formación en algoritmos, estructuras de datos, ingeniería del software, etc. Las asignaturas cursadas se muestran a continuación."
-                        : "Formación especializada en Big Data, almacenamiento en la nube, machine learning e ingeniería de datos. Aplicación práctica con AWS, PySpark y herramientas de ETL."}
-                    </p>
-                    <h5 className="text-sm font-semibold text-blue-300 mt-3 mb-2">
-                      Resumen de calificaciones
-                    </h5>
-                    <img
-                      src={notas_grado}
-                      alt="Resumen notas grado"
-                      onClick={() => setImagenAmpliada(notas_grado)}
-                      className="w-full h-32 object-contain bg-white p-2 rounded mt-2 transition-transform duration-300 transform hover:scale-105 cursor-pointer"
-                    />
-                  </div>
+        <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Formación Académica</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {formaciones.map((formacion, i) => (
+            <div
+              key={i}
+              className="relative group [perspective:1000px] h-[400px] cursor-pointer"
+              onClick={() => esMovil && alternarGiroFormacion(i)}
+            >
+              <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
+                esMovil
+                  ? formacionesGiradas[i]
+                    ? "[transform:rotateY(180deg)]"
+                    : ""
+                  : "group-hover:[transform:rotateY(180deg)]"
+              }`}>
+                {/* Frente */}
+                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col items-center">
+                  <img src={formacion.imagen} alt={formacion.titulo} className="w-full h-40 object-contain bg-white p-2 rounded" />
+                  <h3 className="text-lg font-bold text-white text-center mt-2">{formacion.titulo}</h3>
+                  <p className="text-gray-400 text-sm text-center mt-1">{formacion.institucion}</p>
+                  {formacion.especialidad && (
+                    <p className="text-gray-400 text-sm text-center mt-1">{formacion.especialidad}</p>
+                  )}
+                  <p className="text-blue-400 font-semibold text-sm mt-2">{formacion.nota}</p>
                 </div>
 
-                {/* Indicador táctil */}
-                {esMovil && !formacionesGiradas[i] && (
-                  <div className="absolute bottom-2 right-2 text-xs text-blue-300 bg-gray-700 px-2 py-1 rounded-full z-10">
-                    Toca para ver más
-                  </div>
-                )}
+                {/* Reverso */}
+                <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-4 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
+                  <h4 className="text-lg font-semibold mb-2">Más información</h4>
+                  <p className="text-sm mb-2">{formacion.resumen}</p>
+                  <h5 className="text-sm font-semibold text-blue-300 mt-3 mb-2">Resumen de calificaciones</h5>
+                  <img
+                    src={formacion.prototipo}
+                    alt="Resumen notas"
+                    onClick={() => setImagenAmpliada(formacion.prototipo)}
+                    className="w-full h-32 object-contain bg-white p-2 rounded mt-2 transition-transform duration-300 transform hover:scale-105 cursor-pointer"
+                  />
+                </div>
               </div>
-            ))}
-          </div>
-        </section>
+
+              {/* Indicador táctil */}
+              {esMovil && !formacionesGiradas[i] && (
+                <div className="absolute top-2 right-2 text-xs text-blue-300 bg-gray-700 px-2 py-1 rounded-full z-10">
+                  Toca para ver más
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
 
 
         {/* PARTE DE IMAGENES EN PANTALLA COMPLETA CUANDO HACES CLICK */}
