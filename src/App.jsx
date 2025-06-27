@@ -439,7 +439,7 @@ function App() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.4 }}
         >
         <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">
           Sobre mí
@@ -521,7 +521,7 @@ function App() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.4 }}
         >
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Proyectos</h2>
 
@@ -647,7 +647,7 @@ function App() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.4 }}
         >
         <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Formación Académica</h2>
         <div className="grid md:grid-cols-2 gap-6">
@@ -727,7 +727,7 @@ function App() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.4 }}
         >
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Experiencia Laboral</h2>
           
@@ -770,7 +770,7 @@ function App() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.4 }}
         >
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-6">Contacto</h2>
 
