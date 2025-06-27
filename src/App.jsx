@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
+import { motion } from "framer-motion";
 import linkedin_logo from './assets/linkedin_logo.png';
 import github_logo from './assets/github_logo.png';
 import telefono_logo from './assets/telefono.png';
@@ -218,14 +219,34 @@ function App() {
           }
         });
       },
-      { threshold: 0.6 }
+      {
+        threshold: 0.3,
+        rootMargin: '-100px 0px 0px 0px',
+      }
     );
   
-    const secciones = document.querySelectorAll("section[id]");
-    secciones.forEach((s) => observer.observe(s));
+    // Observa secciones manualmente desde refs
+    Object.values(seccionesRef).forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
   
-    return () => secciones.forEach((s) => observer.unobserve(s));
+    return () => {
+      Object.values(seccionesRef).forEach((ref) => {
+        if (ref.current) observer.unobserve(ref.current);
+      });
+    };
   }, []);
+  
+
+  const seccionesRef = {
+    inicio: useRef(null),
+    'sobre-mi': useRef(null),
+    proyectos: useRef(null),
+    formacion: useRef(null),
+    experiencia: useRef(null),
+    contacto: useRef(null),
+  };
+  
 
 
 
@@ -411,11 +432,18 @@ function App() {
 
 
         {/* SOBRE MÍ */}
-        <section id="sobre-mi" className="max-w-5xl mx-auto bg-gray-800 rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-4 text-center">Sobre mí</h2>
-          <p className="text-gray-300 leading-relaxed mb-6 text-center">
-            Soy una persona autodidacta, proactiva y con muchas ganas de aprender. Me encuentro en constante formación para convertirme en un desarrollador completo.
-          </p>
+        <motion.section
+          id="sobre-mi"
+          ref={seccionesRef['sobre-mi']}
+          className="scroll-mt-28 ..."
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.3 }}
+        >
+        <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">
+          Sobre mí
+        </h2>
 
           {[
             {
@@ -483,18 +511,25 @@ function App() {
               </div>
             </div>
           ))}
-        </section>
+        </motion.section>
 
 
         {/* PROYECTOS */}
-        <section id="proyectos" className="max-w-6xl mx-auto px-4 py-12">
+        <motion.section
+          id="proyectos"
+          className="max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Proyectos</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {proyectosPaginados.map((proyecto, index) => (
               <div
                 key={index}
-                className="relative group [perspective:1000px] h-[450px] cursor-pointer"
+                className="relative group [perspective:1000px] h-[520px] cursor-pointer"
                 onClick={() => esMovil && alternarGiro(index)}
               >
                 <div
@@ -509,23 +544,27 @@ function App() {
 
                   {/* Frente */}
                   <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col">
-                    <img src={proyecto.imagen} alt={proyecto.titulo} className="w-full h-40 object-cover rounded" />
-                    <h3 className="text-lg font-bold text-white mt-4 min-h-[64px]">
-                      {proyecto.titulo}
-                    </h3>
-                    <p className="text-gray-400 text-sm mt-1 min-h-[48px]">
-                      {proyecto.descripcion}
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-auto">
-                      {proyecto.tecnologias.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="bg-blue-600 text-xs text-white px-3 py-1 rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                  <img src={proyecto.imagen} alt={proyecto.titulo} className="w-full h-40 object-cover rounded" />
+
+                  <h3 className="text-lg font-bold text-white mt-4">
+                    {proyecto.titulo}
+                  </h3>
+
+                  <p className="text-gray-400 text-sm mt-2">
+                    {proyecto.descripcion}
+                  </p>
+
+                  <div className="flex flex-wrap justify-center gap-2 mt-auto">
+                    {proyecto.tecnologias.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="bg-blue-600 text-xs text-white px-3 py-1 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
                   </div>
 
                   {/* Reverso */}
@@ -598,11 +637,18 @@ function App() {
             Siguiente
           </button>
         </div>
-        </section>
+        </motion.section>
 
 
         {/* FORMACIÓN */}
-        <section id="formacion" className="max-w-5xl mx-auto px-4 py-12">
+        <motion.section
+          id="formacion"
+          className="max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
         <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Formación Académica</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {formaciones.map((formacion, i) => (
@@ -619,7 +665,7 @@ function App() {
                   : "group-hover:[transform:rotateY(180deg)]"
               }`}>
                 {/* Frente */}
-                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col items-center">
+                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col">
                   <img src={formacion.imagen} alt={formacion.titulo} className="w-full h-40 object-contain bg-white p-2 rounded" />
                   <h3 className="text-lg font-bold text-white text-center mt-2">{formacion.titulo}</h3>
                   <p className="text-gray-400 text-sm text-center mt-1">{formacion.institucion}</p>
@@ -652,7 +698,7 @@ function App() {
             </div>
           ))}
         </div>
-      </section>
+        </motion.section>
 
         {/* PARTE DE IMAGENES EN PANTALLA COMPLETA CUANDO HACES CLICK */}
         {imagenAmpliada && (
@@ -675,7 +721,14 @@ function App() {
 
 
         {/* EXPERIENCIA */}
-        <section id="experiencia" className="max-w-5xl mx-auto px-4 py-12">
+        <motion.section
+          id="experiencia"
+          className="max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Experiencia Laboral</h2>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -707,12 +760,19 @@ function App() {
             </div>
 
           </div>
-        </section>
+        </motion.section>
 
 
         {/* CONTACTO */}
-        <section id="contacto" className="max-w-4xl mx-auto bg-gray-800 rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-4 text-center">Contacto</h2>
+        <motion.section
+          id="contacto"
+          className="max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl font-bold text-center text-blue-400 mb-6">Contacto</h2>
 
           {/* Enlaces de contacto */}
           <div className="flex flex-wrap justify-center gap-6 text-white">
@@ -758,7 +818,7 @@ function App() {
             <textarea name="message" required placeholder="Escribe tu mensaje" className="w-full p-2 rounded bg-gray-700 text-white"></textarea>
             <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded cursor-pointer"> Enviar mensaje </button>
           </form>
-        </section>
+        </motion.section>
 
         {/* MENSAJE DE GRACIAS (se muestra tras envío) */}
         {enviado && (
