@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import { motion } from "framer-motion";
+import SeccionAnimada from "./components/SeccionAnimada";
 import linkedin_logo from './assets/linkedin_logo.png';
 import github_logo from './assets/github_logo.png';
 import telefono_logo from './assets/telefono.png';
@@ -210,6 +211,15 @@ function App() {
 
   const [seccionActiva, setSeccionActiva] = useState('inicio');
 
+  const seccionesRef = {
+    'inicio': useRef(null),
+    'sobre-mi': useRef(null),
+    'proyectos': useRef(null),
+    'formacion': useRef(null),
+    'experiencia': useRef(null),
+    'contacto': useRef(null),
+  };  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -237,18 +247,6 @@ function App() {
     };
   }, []);
   
-
-  const seccionesRef = {
-    inicio: useRef(null),
-    'sobre-mi': useRef(null),
-    proyectos: useRef(null),
-    formacion: useRef(null),
-    experiencia: useRef(null),
-    contacto: useRef(null),
-  };
-  
-
-
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 w-full">
@@ -432,17 +430,13 @@ function App() {
 
 
         {/* SOBRE MÍ */}
-        <motion.section
+        <SeccionAnimada
           id="sobre-mi"
+          esMovil={esMovil}
           ref={seccionesRef['sobre-mi']}
           className="scroll-mt-28 max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
-          {...(!esMovil && {
-            initial: { opacity: 0, y: 40 },
-            whileInView: { opacity: 1, y: 0 },
-            transition: { duration: 0.6 },
-            viewport: { once: false, amount: 0.3 }
-          })}
         >
+
         <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">
           Sobre mí
         </h2>
@@ -513,17 +507,15 @@ function App() {
               </div>
             </div>
           ))}
-        </motion.section>
+        </SeccionAnimada>
 
 
         {/* PROYECTOS */}
-        <motion.section
+        <SeccionAnimada
           id="proyectos"
+          esMovil={esMovil}
+          ref={seccionesRef['proyectos']}
           className="max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.4 }}
         >
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Proyectos</h2>
 
@@ -639,17 +631,15 @@ function App() {
             Siguiente
           </button>
         </div>
-        </motion.section>
+        </SeccionAnimada>
 
 
         {/* FORMACIÓN */}
-        <motion.section
+        <SeccionAnimada
           id="formacion"
-          className="max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.4 }}
+          esMovil={esMovil}
+          ref={seccionesRef['formacion']}
+          className="scroll-mt-28 max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
         >
         <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Formación Académica</h2>
         <div className="grid md:grid-cols-2 gap-6">
@@ -700,7 +690,7 @@ function App() {
             </div>
           ))}
         </div>
-        </motion.section>
+        </SeccionAnimada>
 
         {/* PARTE DE IMAGENES EN PANTALLA COMPLETA CUANDO HACES CLICK */}
         {imagenAmpliada && (
@@ -723,13 +713,11 @@ function App() {
 
 
         {/* EXPERIENCIA */}
-        <motion.section
+        <SeccionAnimada
           id="experiencia"
-          className="max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.4 }}
+          esMovil={esMovil}
+          ref={seccionesRef['experiencia']}
+          className="scroll-mt-28 max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
         >
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Experiencia Laboral</h2>
           
@@ -762,17 +750,15 @@ function App() {
             </div>
 
           </div>
-        </motion.section>
+        </SeccionAnimada>
 
 
         {/* CONTACTO */}
-        <motion.section
+        <SeccionAnimada
           id="contacto"
-          className="max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.4 }}
+          esMovil={esMovil}
+          ref={seccionesRef['contacto']}
+          className="scroll-mt-28 max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
         >
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-6">Contacto</h2>
 
@@ -820,7 +806,8 @@ function App() {
             <textarea name="message" required placeholder="Escribe tu mensaje" className="w-full p-2 rounded bg-gray-700 text-white"></textarea>
             <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded cursor-pointer"> Enviar mensaje </button>
           </form>
-        </motion.section>
+        </SeccionAnimada>
+
 
         {/* MENSAJE DE GRACIAS (se muestra tras envío) */}
         {enviado && (
