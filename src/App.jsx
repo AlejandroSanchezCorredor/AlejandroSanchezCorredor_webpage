@@ -435,11 +435,13 @@ function App() {
         <motion.section
           id="sobre-mi"
           ref={seccionesRef['sobre-mi']}
-          className="scroll-mt-28 ..."
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.4 }}
+          className="scroll-mt-28 max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
+          {...(!esMovil && {
+            initial: { opacity: 0, y: 40 },
+            whileInView: { opacity: 1, y: 0 },
+            transition: { duration: 0.6 },
+            viewport: { once: false, amount: 0.3 }
+          })}
         >
         <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">
           Sobre mí
