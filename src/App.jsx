@@ -207,12 +207,33 @@ function App() {
     }
   ];
 
+  const [seccionActiva, setSeccionActiva] = useState('inicio');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setSeccionActiva(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+  
+    const secciones = document.querySelectorAll("section[id]");
+    secciones.forEach((s) => observer.observe(s));
+  
+    return () => secciones.forEach((s) => observer.unobserve(s));
+  }, []);
+
+
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 w-full">
 
       {/* NAVBAR */}
-      <nav className="bg-gray-800 shadow-md fixed top-0 left-0 right-0 z-10">
+      <nav className="bg-gray-800 shadow-md fixed top-0 left-0 right-0 z-50">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-2 px-6 py-4">
 
           {/* Logo + texto */}
@@ -239,12 +260,78 @@ function App() {
 
           {/* Enlaces escritorio */}
           <ul className="hidden md:flex gap-4 md:gap-6 text-xs md:text-sm font-semibold uppercase">
-            <li><a href="#inicio" className="text-red-400 hover:text-white">Inicio</a></li>
-            <li><a href="#sobre-mi" className="text-white hover:text-blue-400">Sobre mí</a></li>
-            <li><a href="#proyectos" className="text-white hover:text-blue-400">Proyectos</a></li>
-            <li><a href="#formacion" className="text-white hover:text-blue-400">Formación Académica</a></li>
-            <li><a href="#experiencia" className="text-white hover:text-blue-400">Experiencia Laboral</a></li>
-            <li><a href="#contacto" className="text-white hover:text-blue-400">Contacto</a></li>
+            <li>
+              <a
+                href="#inicio"
+                className={`transition-all duration-300 ${
+                  seccionActiva === 'inicio'
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                    : 'text-white hover:text-pink-400'
+                }`}
+              >
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a
+                href="#sobre-mi"
+                className={`transition-all duration-300 ${
+                  seccionActiva === 'sobre-mi'
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                    : 'text-white hover:text-pink-400'
+                }`}
+              >
+                Sobre mí
+              </a>
+            </li>
+            <li>
+              <a
+                href="#proyectos"
+                className={`transition-all duration-300 ${
+                  seccionActiva === 'proyectos'
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                    : 'text-white hover:text-pink-400'
+                }`}
+              >
+                Proyectos
+              </a>
+            </li>
+            <li>
+              <a
+                href="#formacion"
+                className={`transition-all duration-300 ${
+                  seccionActiva === 'formacion'
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                    : 'text-white hover:text-pink-400'
+                }`}
+              >
+                Formación
+              </a>
+            </li>
+            <li>
+              <a
+                href="#experiencia"
+                className={`transition-all duration-300 ${
+                  seccionActiva === 'experiencia'
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                    : 'text-white hover:text-pink-400'
+                }`}
+              >
+                Experiencia
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contacto"
+                className={`transition-all duration-300 ${
+                  seccionActiva === 'contacto'
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                    : 'text-white hover:text-pink-400'
+                }`}
+              >
+                Contacto
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -269,7 +356,7 @@ function App() {
         {/* INICIO / HERO */}
         <section
           id="inicio"
-          className="relative h-[90vh] flex items-center justify-center text-center overflow-hidden"
+          className="relative min-h-[90vh] flex items-center justify-center text-center overflow-hidden pt-28"
         >
           {/* Video de fondo */}
           <video
@@ -288,6 +375,13 @@ function App() {
             <h1 className="text-4xl md:text-5xl font-extrabold text-blue-400 underline">
               ¡Hola! Soy Alejandro
             </h1>
+            <a
+              href="/CV_TEST.pdf"
+              download
+              className="inline-block bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500 hover:brightness-110 text-white font-semibold py-2 px-6 rounded mt-4 shadow-lg transition-all duration-300"
+            >
+              Descargar CV
+            </a>
 
             {/* Efecto máquina de escribir */}
             <p className="text-lg md:text-xl">
@@ -447,12 +541,19 @@ function App() {
                     {proyecto.prototipo && (
                       <>
                         <span className="text-xs text-blue-300 font-medium mb-1">Prototipo</span>
-                        <img
-                          src={proyecto.prototipo}
-                          alt="Prototipo"
-                          onClick={() => setImagenAmpliada(proyecto.prototipo)}
-                          className="w-full h-32 object-contain rounded-lg shadow-lg cursor-pointer transition-transform duration-300 transform hover:scale-105"
+                        <div className="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden shadow-md">
+                          <div className="bg-gray-700 p-2 flex items-center space-x-2">
+                            <span className="w-3 h-3 bg-red-500 rounded-full" />
+                            <span className="w-3 h-3 bg-yellow-500 rounded-full" />
+                            <span className="w-3 h-3 bg-green-500 rounded-full" />
+                          </div>
+                          <img
+                            src={proyecto.prototipo}
+                            alt="Prototipo"
+                            onClick={() => setImagenAmpliada(proyecto.prototipo)}
+                            className="w-full h-32 object-cover cursor-pointer transition-transform duration-300 transform hover:scale-105"
                           />
+                        </div>
                       </>
                     )}
 
@@ -467,7 +568,6 @@ function App() {
                         GitHub
                       </a>
                     )}
-
                   </div>
                 </div>
 
@@ -556,17 +656,23 @@ function App() {
 
         {/* PARTE DE IMAGENES EN PANTALLA COMPLETA CUANDO HACES CLICK */}
         {imagenAmpliada && (
-          <div
-            className="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50"
-            onClick={() => setImagenAmpliada(null)}
-          >
-            <img
-              src={imagenAmpliada}
-              alt="Imagen ampliada"
-              className="max-w-full max-h-full rounded shadow-lg"
-            />
+          <div className="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50" onClick={() => setImagenAmpliada(null)}>
+            <div className="relative max-w-4xl w-full p-4">
+              <button
+                onClick={() => setImagenAmpliada(null)}
+                className="absolute top-2 right-2 text-white text-2xl font-bold hover:text-red-400"
+              >
+                ✕
+              </button>
+              <img
+                src={imagenAmpliada}
+                alt="Imagen ampliada"
+                className="w-full max-h-[90vh] object-contain rounded shadow-lg"
+              />
+            </div>
           </div>
         )}
+
 
         {/* EXPERIENCIA */}
         <section id="experiencia" className="max-w-5xl mx-auto px-4 py-12">
@@ -661,6 +767,16 @@ function App() {
           </div>
         )}
       </main>
+
+      {/* BOTÓN VOLVER ARRIBA */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500 hover:brightness-110 text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300 cursor-pointer"
+        title="Volver arriba"
+      >
+        ↑
+      </button>
+
     </div>
   );
 }
