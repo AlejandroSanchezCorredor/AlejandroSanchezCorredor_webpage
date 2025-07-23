@@ -736,7 +736,7 @@ function App() {
               <ul className="text-gray-300 text-sm list-disc list-inside mt-3 text-left">
                 <li>Desarrollo de modelos de previsión (forecasting) para series temporales utilizando Prophet (Facebook).</li>
                 <li>Diseño y mantenimiento de procesos ETL mediante Pentaho (Kettle).</li>
-                <li>Gestión de bases de datos relacionales (PostgreSQL) y NoSQL (MongoDB).</li>
+                <li>Gestión de bases de datos relacionales (MySQL) y NoSQL (MongoDB).</li>
                 <li>Evaluación y pruebas de modelos de IA: GPT, Julius, Ollama, entre otros.</li>
               </ul>
             </div>

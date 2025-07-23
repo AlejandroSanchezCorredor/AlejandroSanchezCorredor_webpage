@@ -1,0 +1,138 @@
+{
+    "basics": {
+        "name": "Alejandro Sánchez",
+        "headline": "Graduado en Ingeniería Informática",
+        "summary": "Apasionado de la programación, especialmente en la ciencia de datos, automatización y desarrollo de inteligencia artificial. Mi intención es aportar mis conocimientos adquiridos durante toda mi etapa como estudiante para poder desarrollarnos tanto yo como mis compañeros profesionalmente.",
+        "location": {
+            "city": "Albacete"
+        },
+        "email": "sanchez.corredor.alejandro@gmail.com",
+        "phone": "+34 692 19 58 48",
+        "url": "https://www.linkedin.com/in/alejandrosanchezcorredor/"
+    },
+    "education": [
+        {
+            "institution": "UCLM - Escuela Superior de Ingeniería Informática",
+            "area": "Ingeniería Informática",
+            "studyType": "Grado Universitario",
+            "startDate": "2020-09-01",
+            "endDate": "2024-06-30",
+            "score": "8.15"
+        },
+        {
+            "institution": "UCLM",
+            "area": "Ciencia de Datos e Ingeniería de Datos en la Nube",
+            "studyType": "Máster",
+            "startDate": "2024-09-01",
+            "endDate": "2025-07-01",
+            "score": "9.73"
+        }
+    ],
+    "work": [
+        {
+            "name": "Teknei",
+            "position": "Prácticas (Full Stack - IA)",
+            "startDate": "2024-02-01",
+            "endDate": "2024-05-31",
+            "summary": "Desarrollo Full Stack para el Trabajo de Fin de Grado: 'Uso de GPT para Comunicaciones Automatizadas en Booking'.",
+            "highlights": [
+                "Calificación: 10",
+                "Automatización con GPT",
+                "Backend + Frontend en entorno productivo"
+            ]
+        },
+        {
+            "name": "Colaboración Freelance",
+            "position": "Desarrollador Python Junior",
+            "startDate": "2023-09-01",
+            "endDate": "2023-12-01",
+            "summary": "Desarrollo de scripts de automatización y limpieza de datos para una pequeña empresa del sector turismo.",
+            "highlights": [
+                "Automatización de reportes en Excel con Pandas",
+                "Extracción de datos desde APIs REST",
+                "Uso de cron jobs y notificaciones por email"
+            ]
+        }
+    ],
+    "skills": [
+        {
+            "name": "Lenguajes",
+            "keywords": [
+                "Python (Avanzado)",
+                "SQL (Intermedio)",
+                "Java (Básico)"
+            ]
+        },
+        {
+            "name": "Machine Learning",
+            "keywords": [
+                "TensorFlow",
+                "Scikit-learn"
+            ]
+        },
+        {
+            "name": "Análisis de Datos",
+            "keywords": [
+                "Pandas",
+                "NumPy",
+                "Matplotlib / Seaborn"
+            ]
+        },
+        {
+            "name": "Frontend",
+            "keywords": [
+                "Streamlit",
+                "HTML/CSS",
+                "Angular (Básico)"
+            ]
+        },
+        {
+            "name": "DevOps / Infraestructura",
+            "keywords": [
+                "Serverless Framework",
+                "AWS"
+            ]
+        },
+        {
+            "name": "Herramientas",
+            "keywords": [
+                "Jupyter Notebook",
+                "Selenium"
+            ]
+        }
+    ],
+    "languages": [
+        {
+            "name": "Castellano",
+            "fluency": "Nativo"
+        },
+        {
+            "name": "Inglés",
+            "fluency": "B2 - First Certificate (Monkey English, 2022)"
+        }
+    ],
+    "interests": [
+        {
+            "name": "Más información y hobbies",
+            "keywords": [
+                "Concurso nacional de programación AdaByron 2023",
+                "Curso introducción a la ciencia de datos - mastermind",
+                "Formación continua en IA - UCLM",
+                "Carnet de conducir"
+            ]
+        }
+    ],
+    "references": [],
+    "sections": {
+        "work": true,
+        "education": true,
+        "skills": true,
+        "languages": true,
+        "interests": true,
+        "summary": true,
+        "projects": false,
+        "awards": false,
+        "certifications": false,
+        "publications": false
+    }
+}
