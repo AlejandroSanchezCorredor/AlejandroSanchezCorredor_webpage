@@ -77,7 +77,7 @@ function App() {
     'ETLs y automatización',
     'Ciencia de datos',
   ];
-  
+
   const [typedText, setTypedText] = useState('');
   const [fraseIndex, setFraseIndex] = useState(0);
   const [letraIndex, setLetraIndex] = useState(0);
@@ -202,7 +202,7 @@ function App() {
       titulo: "Máster en Ciencia e Ingeniería de Datos en la Nube",
       institucion: "UCLM · 2024 - 2025",
       especialidad: "",
-      nota: "Nota media: Por definir",
+      nota: "Nota media: 9.73",
       imagen: cidaen,
       resumen: "Formación especializada en Big Data, almacenamiento en la nube, machine learning e ingeniería de datos. Aplicación práctica con AWS, PySpark, TensorFlow, Scikit-learn, Apache Spark, Docker, Serverless Framework, Prefect, MLflow, Plotly, SQL, NoSQL, y herramientas de ETL y visualización.",
       prototipo: cidaen,
@@ -218,7 +218,7 @@ function App() {
     'formacion': useRef(null),
     'experiencia': useRef(null),
     'contacto': useRef(null),
-  };  
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -234,19 +234,19 @@ function App() {
         rootMargin: '-100px 0px 0px 0px',
       }
     );
-  
+
     // Observa secciones manualmente desde refs
     Object.values(seccionesRef).forEach((ref) => {
       if (ref.current) observer.observe(ref.current);
     });
-  
+
     return () => {
       Object.values(seccionesRef).forEach((ref) => {
         if (ref.current) observer.unobserve(ref.current);
       });
     };
   }, []);
-  
+
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 w-full">
@@ -282,11 +282,10 @@ function App() {
             <li>
               <a
                 href="#inicio"
-                className={`transition-all duration-300 ${
-                  seccionActiva === 'inicio'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
-                    : 'text-white hover:text-pink-400'
-                }`}
+                className={`transition-all duration-300 ${seccionActiva === 'inicio'
+                  ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                  : 'text-white hover:text-pink-400'
+                  }`}
               >
                 Inicio
               </a>
@@ -294,11 +293,10 @@ function App() {
             <li>
               <a
                 href="#sobre-mi"
-                className={`transition-all duration-300 ${
-                  seccionActiva === 'sobre-mi'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
-                    : 'text-white hover:text-pink-400'
-                }`}
+                className={`transition-all duration-300 ${seccionActiva === 'sobre-mi'
+                  ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                  : 'text-white hover:text-pink-400'
+                  }`}
               >
                 Sobre mí
               </a>
@@ -306,11 +304,10 @@ function App() {
             <li>
               <a
                 href="#proyectos"
-                className={`transition-all duration-300 ${
-                  seccionActiva === 'proyectos'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
-                    : 'text-white hover:text-pink-400'
-                }`}
+                className={`transition-all duration-300 ${seccionActiva === 'proyectos'
+                  ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                  : 'text-white hover:text-pink-400'
+                  }`}
               >
                 Proyectos
               </a>
@@ -318,11 +315,10 @@ function App() {
             <li>
               <a
                 href="#formacion"
-                className={`transition-all duration-300 ${
-                  seccionActiva === 'formacion'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
-                    : 'text-white hover:text-pink-400'
-                }`}
+                className={`transition-all duration-300 ${seccionActiva === 'formacion'
+                  ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                  : 'text-white hover:text-pink-400'
+                  }`}
               >
                 Formación
               </a>
@@ -330,11 +326,10 @@ function App() {
             <li>
               <a
                 href="#experiencia"
-                className={`transition-all duration-300 ${
-                  seccionActiva === 'experiencia'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
-                    : 'text-white hover:text-pink-400'
-                }`}
+                className={`transition-all duration-300 ${seccionActiva === 'experiencia'
+                  ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                  : 'text-white hover:text-pink-400'
+                  }`}
               >
                 Experiencia
               </a>
@@ -342,11 +337,10 @@ function App() {
             <li>
               <a
                 href="#contacto"
-                className={`transition-all duration-300 ${
-                  seccionActiva === 'contacto'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
-                    : 'text-white hover:text-pink-400'
-                }`}
+                className={`transition-all duration-300 ${seccionActiva === 'contacto'
+                  ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500'
+                  : 'text-white hover:text-pink-400'
+                  }`}
               >
                 Contacto
               </a>
@@ -395,7 +389,7 @@ function App() {
               ¡Hola! Soy Alejandro
             </h1>
             <a
-              href="/CV_TEST.pdf"
+              href="./cv.pdf"
               download
               className="inline-block bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500 hover:brightness-110 text-white font-semibold py-2 px-6 rounded mt-4 shadow-lg transition-all duration-300"
             >
@@ -437,9 +431,9 @@ function App() {
           className="scroll-mt-28 max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
         >
 
-        <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">
-          Sobre mí
-        </h2>
+          <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">
+            Sobre mí
+          </h2>
 
           {[
             {
@@ -527,37 +521,36 @@ function App() {
                 onClick={() => esMovil && alternarGiro(index)}
               >
                 <div
-                  className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
-                    esMovil
-                      ? giradas[index]
-                        ? "[transform:rotateY(180deg)]"
-                        : ""
-                      : "group-hover:[transform:rotateY(180deg)]"
-                  }`}
+                  className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${esMovil
+                    ? giradas[index]
+                      ? "[transform:rotateY(180deg)]"
+                      : ""
+                    : "group-hover:[transform:rotateY(180deg)]"
+                    }`}
                 >
 
                   {/* Frente */}
                   <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col">
-                  <img src={proyecto.imagen} alt={proyecto.titulo} className="w-full h-40 object-cover rounded" />
+                    <img src={proyecto.imagen} alt={proyecto.titulo} className="w-full h-40 object-cover rounded" />
 
-                  <h3 className="text-lg font-bold text-white mt-4">
-                    {proyecto.titulo}
-                  </h3>
+                    <h3 className="text-lg font-bold text-white mt-4">
+                      {proyecto.titulo}
+                    </h3>
 
-                  <p className="text-gray-400 text-sm mt-2">
-                    {proyecto.descripcion}
-                  </p>
+                    <p className="text-gray-400 text-sm mt-2">
+                      {proyecto.descripcion}
+                    </p>
 
-                  <div className="flex flex-wrap justify-center gap-2 mt-auto">
-                    {proyecto.tecnologias.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="bg-blue-600 text-xs text-white px-3 py-1 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                    <div className="flex flex-wrap justify-center gap-2 mt-auto">
+                      {proyecto.tecnologias.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="bg-blue-600 text-xs text-white px-3 py-1 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
 
                   </div>
 
@@ -614,23 +607,23 @@ function App() {
             ))}
           </div>
 
-        {/* BOTONES PAGINACION PROYECTOS */}
-        <div className="flex justify-center mt-8 gap-4">
-          <button
-            onClick={() => setPaginaActual(p => Math.max(p - 1, 1))}
-            disabled={paginaActual === 1}
-            className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50 cursor-pointer"
-          >
-            Anterior
-          </button>
-          <button
-            onClick={() => setPaginaActual(p => Math.min(p + 1, totalPaginas))}
-            disabled={paginaActual === totalPaginas}
-            className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50 cursor-pointer"
-          >
-            Siguiente
-          </button>
-        </div>
+          {/* BOTONES PAGINACION PROYECTOS */}
+          <div className="flex justify-center mt-8 gap-4">
+            <button
+              onClick={() => setPaginaActual(p => Math.max(p - 1, 1))}
+              disabled={paginaActual === 1}
+              className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50 cursor-pointer"
+            >
+              Anterior
+            </button>
+            <button
+              onClick={() => setPaginaActual(p => Math.min(p + 1, totalPaginas))}
+              disabled={paginaActual === totalPaginas}
+              className="px-4 py-1 bg-blue-600 text-white rounded disabled:opacity-50 cursor-pointer"
+            >
+              Siguiente
+            </button>
+          </div>
         </SeccionAnimada>
 
 
@@ -641,55 +634,54 @@ function App() {
           ref={seccionesRef['formacion']}
           className="scroll-mt-28 max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
         >
-        <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Formación Académica</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {formaciones.map((formacion, i) => (
-            <div
-              key={i}
-              className="relative group [perspective:1000px] h-[400px] cursor-pointer"
-              onClick={() => esMovil && alternarGiroFormacion(i)}
-            >
-              <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
-                esMovil
+          <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Formación Académica</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {formaciones.map((formacion, i) => (
+              <div
+                key={i}
+                className="relative group [perspective:1000px] h-[400px] cursor-pointer"
+                onClick={() => esMovil && alternarGiroFormacion(i)}
+              >
+                <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${esMovil
                   ? formacionesGiradas[i]
                     ? "[transform:rotateY(180deg)]"
                     : ""
                   : "group-hover:[transform:rotateY(180deg)]"
-              }`}>
-                {/* Frente */}
-                <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col">
-                  <img src={formacion.imagen} alt={formacion.titulo} className="w-full h-40 object-contain bg-white p-2 rounded" />
-                  <h3 className="text-lg font-bold text-white text-center mt-2">{formacion.titulo}</h3>
-                  <p className="text-gray-400 text-sm text-center mt-1">{formacion.institucion}</p>
-                  {formacion.especialidad && (
-                    <p className="text-gray-400 text-sm text-center mt-1">{formacion.especialidad}</p>
-                  )}
-                  <p className="text-blue-400 font-semibold text-sm mt-2">{formacion.nota}</p>
+                  }`}>
+                  {/* Frente */}
+                  <div className="absolute w-full h-full bg-gray-800 rounded-lg shadow-lg p-4 backface-hidden flex flex-col">
+                    <img src={formacion.imagen} alt={formacion.titulo} className="w-full h-40 object-contain bg-white p-2 rounded" />
+                    <h3 className="text-lg font-bold text-white text-center mt-2">{formacion.titulo}</h3>
+                    <p className="text-gray-400 text-sm text-center mt-1">{formacion.institucion}</p>
+                    {formacion.especialidad && (
+                      <p className="text-gray-400 text-sm text-center mt-1">{formacion.especialidad}</p>
+                    )}
+                    <p className="text-blue-400 font-semibold text-sm mt-2">{formacion.nota}</p>
+                  </div>
+
+                  {/* Reverso */}
+                  <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-4 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
+                    <h4 className="text-lg font-semibold mb-2">Más información</h4>
+                    <p className="text-sm mb-2">{formacion.resumen}</p>
+                    <h5 className="text-sm font-semibold text-blue-300 mt-3 mb-2">Resumen de calificaciones</h5>
+                    <img
+                      src={formacion.prototipo}
+                      alt="Resumen notas"
+                      onClick={() => setImagenAmpliada(formacion.prototipo)}
+                      className="w-full h-32 object-contain bg-white p-2 rounded mt-2 transition-transform duration-300 transform hover:scale-105 cursor-pointer"
+                    />
+                  </div>
                 </div>
 
-                {/* Reverso */}
-                <div className="absolute w-full h-full bg-gray-700 text-white rounded-lg p-4 text-center [transform:rotateY(180deg)] backface-hidden flex flex-col">
-                  <h4 className="text-lg font-semibold mb-2">Más información</h4>
-                  <p className="text-sm mb-2">{formacion.resumen}</p>
-                  <h5 className="text-sm font-semibold text-blue-300 mt-3 mb-2">Resumen de calificaciones</h5>
-                  <img
-                    src={formacion.prototipo}
-                    alt="Resumen notas"
-                    onClick={() => setImagenAmpliada(formacion.prototipo)}
-                    className="w-full h-32 object-contain bg-white p-2 rounded mt-2 transition-transform duration-300 transform hover:scale-105 cursor-pointer"
-                  />
-                </div>
+                {/* Indicador táctil */}
+                {esMovil && !formacionesGiradas[i] && (
+                  <div className="absolute top-2 right-2 text-xs text-blue-300 bg-gray-700 px-2 py-1 rounded-full z-10">
+                    Toca para ver más
+                  </div>
+                )}
               </div>
-
-              {/* Indicador táctil */}
-              {esMovil && !formacionesGiradas[i] && (
-                <div className="absolute top-2 right-2 text-xs text-blue-300 bg-gray-700 px-2 py-1 rounded-full z-10">
-                  Toca para ver más
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
         </SeccionAnimada>
 
         {/* PARTE DE IMAGENES EN PANTALLA COMPLETA CUANDO HACES CLICK */}
@@ -720,7 +712,7 @@ function App() {
           className="scroll-mt-28 max-w-4xl mx-auto px-6 pt-12 pb-6 bg-gray-800/70 rounded-xl shadow-lg"
         >
           <h2 className="text-3xl font-bold text-center text-blue-400 mb-10">Experiencia Laboral</h2>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
 
             {/* Tarjeta Teknei */}
@@ -729,10 +721,10 @@ function App() {
               <h3 className="text-lg font-bold text-white text-center mt-4">Programa Robles: Desarrollo TFG (Prácticas)</h3>
               <p className="text-gray-400 text-sm text-center">Teknei · 2024 (Febrero - Mayo)</p>
               <ul className="text-gray-300 text-sm list-disc list-inside mt-3 text-left">
-              <li>Implementación de soluciones en la nube utilizando AWS y Serverless Framework.</li>
-              <li>Desarrollo de APIs REST con Python para procesamiento de datos y automatización.</li>
-              <li>Uso de contenedores Docker para despliegue y desarrollo en entornos aislados.</li>
-              <li>Diseño de interfaces interactivas con Angular para visualización y control de procesos.</li>
+                <li>Implementación de soluciones en la nube utilizando AWS y Serverless Framework.</li>
+                <li>Desarrollo de APIs REST con Python para procesamiento de datos y automatización.</li>
+                <li>Uso de contenedores Docker para despliegue y desarrollo en entornos aislados.</li>
+                <li>Diseño de interfaces interactivas con Angular para visualización y control de procesos.</li>
               </ul>
             </div>
 
