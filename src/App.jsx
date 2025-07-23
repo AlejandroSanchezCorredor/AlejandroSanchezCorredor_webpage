@@ -389,7 +389,7 @@ function App() {
               ¡Hola! Soy Alejandro
             </h1>
             <a
-              href="cv.pdf"
+              href="/cv.pdf"
               download
               className="inline-block bg-gradient-to-r from-pink-500 via-fuchsia-600 to-pink-500 hover:brightness-110 text-white font-semibold py-2 px-6 rounded mt-4 shadow-lg transition-all duration-300"
             >
